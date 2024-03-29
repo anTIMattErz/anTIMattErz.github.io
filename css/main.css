@@ -2,6 +2,7 @@ body {
 	height: 100%;
 	display: flex;
 	flex-direction: row;
+	justify-content: left;
 }
 
 .navbar {
@@ -22,3 +23,6 @@ body {
 	height: 100%;
 }
 
+.home-content{
+	display: flex;
+}
