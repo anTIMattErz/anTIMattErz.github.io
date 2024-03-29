@@ -5,7 +5,7 @@ body {
 .navbar {
 	min-width: 60px;
 	width: 10%;
-	height: 1000px;
+	height: 100%;
 	background-color: yellow;
 	display: flex;
 }
