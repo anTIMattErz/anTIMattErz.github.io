@@ -16,19 +16,19 @@ body {
 	height: 100%;
 }
 
-.navbar a {
+.navbar ul a {
 	display: block;
   	color: #000;
   	padding: 8px 16px;
   	text-decoration: none;
 }
 
-.navbar li a.active {
+.navbar ul li a.active {
   background-color: #04AA6D;
   color: white;
 }
 
-.navbar li a:hover:not(.active) {
+.navbar ul li a:hover:not(.active) {
   background-color: #555;
   color: white;
 }
