@@ -9,6 +9,7 @@ body {
 	background-color: yellow;
 	display: inline-block;
 	vertical-align: top;
+	float: left;
 }
 
 .navbar ul {
