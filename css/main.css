@@ -4,8 +4,8 @@ body {
 
 .navbar {
 	list-style-type: none;
-	width: 60px;
-	min-width: 60px;
+	width: 10%;
+	min-width: fit-content;
 	height: 100%;
 	background-color: yellow;
 	vertical-align: top;
