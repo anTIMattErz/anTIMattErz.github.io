@@ -1,13 +1,7 @@
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-}
-
 .navbar {
 	min-width: 60px;
 	width: 10%;
-	height: 100vp;
+	height: 100%;
 	background-color: yellow;
 	display: flex;
 }
@@ -16,4 +10,8 @@ body {
 	width: 60px;
 	height: 100%;
 	background-color: red;
+}
+
+.navbar-nav ul {
+	height: 100%;
 }
