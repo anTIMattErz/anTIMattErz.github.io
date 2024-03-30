@@ -24,7 +24,7 @@ body {
   	text-decoration: none;
 }
 
-.navbar ul li a.active {
+.navbar ul li a:active {
  	text-decoration: underline;
 }
 
