@@ -3,7 +3,7 @@ function navbar_active() {
     var url = window.location.href;
 
     // passes on every "a" tag
-    $(".navbar a").each(navbar_active() {
+    $(".navbar a").each(function() {
         // checks if its the same on the address bar
         if (url == (this.href)) {
             $(this).closest("li").addClass("active");
