@@ -25,6 +25,7 @@ body {
 }
 
 .navbar ul li a:active {
+	background-color: yellow;
  	text-decoration: underline;
 }
 
