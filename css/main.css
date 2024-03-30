@@ -7,7 +7,7 @@ body {
 	width: 10%;
 	min-width: fit-content;
 	height: 100%;
-	background-color: yellow;
+	background-color: white;
 	vertical-align: top;
 	float: left;
 	position: fixed;
@@ -25,13 +25,12 @@ body {
 }
 
 .navbar ul li a.active {
-  background-color: #04AA6D;
-  color: white;
+ 	text-decoration: underline;
 }
 
 .navbar ul li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+ 	background-color: #555;
+ 	color: white;
 }
 
 .home-content{
