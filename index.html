@@ -17,11 +17,21 @@
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css"> <!-- to reset css-->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+	<script>
+    $(function(){
+        $('a').each(function(){
+            if ($(this).prop('href') == window.location.href) {
+                $(this).addClass('active'); $(this).parents('li').addClass('active');
+            }
+        });
+    });
+	</script>
 </head>
 
 <body>
 	<!-- NAVIGATION BAR -->
-	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 
 	<nav class="navbar">
 		<ul>
@@ -36,23 +46,6 @@
 			<li><a href = "teaching.html">Teaching</a></li>
 		</ul>
 	</nav>
-
-	<script type="text/javascript">
-	    $(function() {
-	        // this will get the full URL at the address bar
-	        var url = window.location.href;
-
-	        // passes on every "a" tag
-	        $(".topmenu a").each(function() {
-	            // checks if its the same on the address bar
-	            if (url == (this.href)) {
-	                $(this).closest("li").addClass("active");
-	                //for making parent of submenu active
-	               $(this).closest("li").parent().parent().addClass("active");
-	            }
-	        });
-	    });        
-	</script>
 	<!-- END NAVIGATION BAR -->
 
 	<div class="home-content">
