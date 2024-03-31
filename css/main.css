@@ -34,7 +34,7 @@ body {
 }
 
 .navbar ul li ul li {
-	margin: 10px;
+	margin-left: 10px;
 }
 
 .home-content{
