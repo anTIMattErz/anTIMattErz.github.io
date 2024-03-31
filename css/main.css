@@ -33,6 +33,10 @@ body {
  	color: white;
 }
 
+.navbar ul li ul li {
+	margin: 10px;
+}
+
 .home-content{
 	margin-left: 10%;
 	width: 90%;
