@@ -6,14 +6,9 @@
   <nav id="sidebar-nav" class="sidebar-nav" aria-label="{{ if .IsHome }}Sections{{ else }}On this page{{ end }}">
     {{- if .IsHome }}
     <div class="rail" data-spy>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#talks">Talks</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#cv">CV &amp; Résumé</a>
-      <a href="#contact">Contact</a>
+      {{- range partial "sections.html" . }}
+      <a href="#{{ .id }}">{{ .label }}</a>
+      {{- end }}
     </div>
     {{- else }}
     <a class="back" href="/{{ with .Section }}#{{ . }}{{ end }}">← Main page</a>

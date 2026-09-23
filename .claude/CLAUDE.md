@@ -1,20 +1,20 @@
 # mtwomack.dev
 
-Michael Womack's personal website, served by GitHub Pages at https://mtwomack.dev from the public repo github.com/anTIMattErz/anTIMattErz.github.io. Tab titles read `<Page> \\ Michael Womack`; the double backslash is intentional.
-- `main`: the old hand-written HTML site, still live (branch deploy, custom domain via `CNAME`).
-- `redesign`: the Hugo rebuild of the academic side, not live yet. README.md maps where each kind of content lives.
+Michael Womack's personal website: a Hugo site served by GitHub Pages at https://mtwomack.dev from the public repo github.com/anTIMattErz/anTIMattErz.github.io. Every push to `main` builds and deploys it through .github/workflows/hugo.yaml (Settings → Pages → Source is "GitHub Actions"; the custom domain is set in those settings, not by the `CNAME` file). README.md maps where each kind of content lives. Tab titles read `<Page> \\ Michael Womack`; the double backslash is intentional.
 
 The user works on this repo from a Windows PC and a MacBook. This file is committed so both share it; put project facts here, not in Claude's auto-memory, which stays on one machine.
 
 ## Rules
-- Pushing `main` deploys the live site immediately. Commit when asked; push only when the user explicitly asks.
+- Pushing `main` deploys the live site within a couple of minutes. Commit when asked; push only when the user explicitly asks.
 - Never invent content. Publications, courses, dates, and bio facts come only from material the user provides. Mark anything missing with a visible TODO: `{{< todo >}}...{{< /todo >}}` in Markdown, the `todo.html` partial in templates, `todo: true` in data files. Hugo lists every TODO as a WARN line when it builds.
+- TODOs show only while drafting (`hugo server`). The live build hides them, leaves out main-page sections with no real content yet (layouts/_partials/sections.html), and doesn't link to topic pages with no details yet.
 - The whole repo is public, even files the site doesn't serve. Private drafts and source material go in `drafts/` (gitignored), never in a commit. Git doesn't sync `drafts/`, so drafts on one machine aren't on the other.
 - Check visual changes in the local preview at desktop and phone widths before calling them done.
 
 ## Local preview (Windows)
-- Hugo 0.166.0 extended, installed with winget (`Hugo.Hugo.Extended`). A shell started before the install won't have it on PATH; the binary is at `%LOCALAPPDATA%\Microsoft\WinGet\Packages\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe\hugo.exe`. Run it from the repo root, in the background:
+- Hugo 0.166.0 extended, installed with winget (`Hugo.Hugo.Extended`). Keep `HUGO_VERSION` in the workflow equal to the local version. A shell started before the install won't have Hugo on PATH; the binary is at `%LOCALAPPDATA%\Microsoft\WinGet\Packages\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe\hugo.exe`. Run it from the repo root, in the background:
   `hugo server -D --bind 127.0.0.1 --port 1313` → http://localhost:1313 (`-D` includes drafts, such as the style check at /research/style-check/)
+- To see exactly what goes live (no TODOs, no drafts), build with `hugo --minify --destination <scratchpad>/hugo-prod` and serve that folder with `py -m http.server 8001 --bind 127.0.0.1 --directory <scratchpad>/hugo-prod`.
 - Python is `py` (`python` is the Microsoft Store stub).
 - Screenshot with headless Chrome, then read the PNG. Use forward-slash Windows paths (Git Bash mangles backslashes). The separate `--user-data-dir` keeps Chrome from handing off to the user's open browser.
   ```
@@ -35,8 +35,8 @@ The user works on this repo from a Windows PC and a MacBook. This file is commit
 Not set up yet. Install Hugo with `brew install hugo` and run the same `hugo server` command; Chrome is at `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`. Check that this works, then record it here.
 
 ## Site plan (from the user, 2026-09-22)
-A full redesign is in progress on the `redesign` branch; `main` keeps serving the old site until launch. The user isn't happy with the old design and isn't confident in HTML/CSS, so Claude builds the structure and styling. The academic side's structure and design are built, with TODO placeholders for all content; the personal side comes later.
-- Private context (who the site is for, what the Projects section holds) is in `CLAUDE.local.md` at the repo root. It's gitignored, so it exists only on the machine where it was written; if it's missing, ask the user. Keep that context out of every committed file, including page content on pushed branches, until the live site says it.
+The redesign went live on 2026-09-22 with only the research topic titles filled in. The user fills in content gradually, and each section appears on the live site once it has some. The user isn't confident in HTML/CSS, so Claude builds the structure and styling. The personal side comes later.
+- Private context (who the site is for, what the Projects section holds) is in `CLAUDE.local.md` at the repo root. It's gitignored, so it exists only on the machine where it was written; if it's missing, ask the user. Keep that context out of every committed file until the live site says it.
 - Built with Hugo (chosen over Jekyll for build-time image resizing and one folder per page). Math is written in LaTeX and rendered with MathJax 3, which loads only on pages that contain math.
 - Academic side: one main page to scroll through, not separate Research/Teaching pages. Order: About, Projects, Research, Publications & theses, Talks, Teaching, CV & résumé, Contact.
 - Projects: separate from Research, right under About (see `CLAUDE.local.md`).
@@ -48,17 +48,14 @@ A full redesign is in progress on the `redesign` branch; `main` keeps serving th
 - Design as built: Palatino-family serif text with Gill Sans-family labels (system fonts, nothing downloaded), a 40rem reading column, and a sticky left sidebar whose rail marks the section on screen, like LessWrong's but with the names always shown. Below 68rem the sidebar becomes a top bar with a drop-down menu. Colors, fonts, and widths are variables at the top of assets/css/main.css.
 - Light and dark themes (the user asked for dark, 2026-09-22): the site follows the device setting, and a button in the sidebar overrides it and remembers the choice. The dark colors are in two identical blocks in main.css; keep them in sync.
 - The mountain photo is the main page's banner and the link-preview image: the band from 26–58% of its height, faded into the page.
-- The repo stays public during the redesign (the user's call, 2026-09-22), so anything pushed, `redesign` included, is readable on GitHub. The user may move to GitHub Pro later, which allows a private repo with Pages still working; on the free plan, making the repo private takes the site offline (checked 2026-09-22).
+- The repo stays public (the user's call, 2026-09-22), so anything pushed is readable on GitHub. The user may move to GitHub Pro later, which allows a private repo with Pages still working; on the free plan, making the repo private takes the site offline (checked 2026-09-22).
 - Photos: GitHub Pages caps the published site at 1 GB and recommends source repos stay under 1 GB (checked 2026-09-22). Git keeps every committed version and the repo is public, so commit web-sized exports only, never originals.
 
 ## Open decisions (ask the user before acting)
 - **Voice and contact details**: first vs third person, and which contact details and profiles to publish.
 - **Look**: a headshot beside the intro?
 
-## Launch checklist (`redesign` → live)
-1. The user fills in every TODO.
-2. Add a GitHub Actions workflow that builds with Hugo 0.166.0 and deploys to GitHub Pages, and have the user switch Settings → Pages → Source to "GitHub Actions". Check then how the custom domain carries over; Actions deploys are configured in Settings rather than by the `CNAME` file.
-3. Merge `redesign` into `main` and push, when the user asks.
-4. Once the live site states what's in `CLAUDE.local.md`, move those notes here.
-
-The old site's known issues (content under the fixed nav, the 15 MB photo, the phone nav, broken favicon paths, jQuery) all go away with the redesign; don't fix them on `main` unless the user asks.
+## Still to do
+1. The user fills in the content; `hugo server` lists what's missing.
+2. Once the live site states what's in `CLAUDE.local.md`, move those notes here.
+3. The `redesign` branch is merged into `main`; delete it (locally and on GitHub) if the user agrees.

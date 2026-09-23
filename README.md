@@ -30,6 +30,10 @@ To add a project or research topic, run `hugo new content projects/NAME/index.md
 - **Math** is LaTeX, rendered by MathJax: `$...$` inline, and `$$...$$` on lines of their own for displayed equations. Put `\begin{equation} ... \label{name} \end{equation}` inside `$$...$$` to number an equation, and refer to it with `\eqref{name}`. Write a dollar sign that isn't math as `\$`. Your LaTeX macros go in `layouts/_partials/mathjax.html`.
 - **Figures**: put the image in the page's folder and write `![what it shows](plot.png "Caption")` on a line of its own. Hugo resizes it.
 - **Sections**: each `##` heading on a project or research page becomes an entry in that page's sidebar.
-- **TODOs**: missing content shows as a yellow TODO box, and `hugo` lists every remaining one when it builds.
+- **TODOs**: missing content shows as a yellow TODO box in the preview, and `hugo server` lists every remaining one. The live site never shows TODOs; a section without content stays hidden until you fill it in.
+
+## Publishing
+
+Commit your changes and push `main`. GitHub builds the site and publishes it to mtwomack.dev in a couple of minutes; the Actions tab on GitHub shows each build.
 
 Private notes and drafts go in `drafts/`, which git ignores; this repository is public.

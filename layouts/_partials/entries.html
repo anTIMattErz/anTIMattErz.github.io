@@ -1,0 +1,5 @@
+{{- /* The entries in data/NAME.yaml, where NAME is this partial's argument.
+       The live site leaves out placeholder entries (todo: true). */}}
+{{- $entries := index hugo.Data . | default slice }}
+{{- if hugo.IsProduction }}{{ $entries = where $entries "todo" "ne" true }}{{ end }}
+{{- return $entries }}

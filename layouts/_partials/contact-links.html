@@ -8,6 +8,6 @@
 {{- end }}
 {{- with $links }}
 <p class="links hero-links">{{ range . }}<a href="{{ .url }}">{{ .name }}</a>{{ end }}</p>
-{{- else }}
+{{- else }}{{ if not hugo.IsProduction }}
 <p class="hero-links">{{ partial "todo.html" (dict "page" $ "text" "links under your name: résumé, CV, email, profiles") }}</p>
-{{- end }}
+{{- end }}{{ end }}

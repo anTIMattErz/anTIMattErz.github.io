@@ -5,6 +5,10 @@ title = "Michael Womack"
 # Only the academic side exists so far: no tags, categories, or RSS feed yet.
 disableKinds = ["taxonomy", "term", "rss"]
 
+# Keep resized images in Hugo's cache folder, which the GitHub build reuses between runs.
+[caches.images]
+  dir = ":cacheDir/images"
+
 [params]
   # The line under your name at the top of the main page.
   tagline = ""

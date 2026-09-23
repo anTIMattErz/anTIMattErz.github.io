@@ -1,0 +1,27 @@
+{{- /* The main page's sections, in order. While drafting (hugo server) all of them appear,
+       TODOs included; the live site leaves out any section that has no real content yet. */}}
+{{- $has := dict
+  "about" (ne (strings.TrimSpace (plainify site.Home.Content)) "")
+  "projects" (gt (len (where site.RegularPages "Section" "projects")) 0)
+  "research" (gt (len (where site.RegularPages "Section" "research")) 0)
+  "publications" (gt (len (partial "entries.html" "publications")) 0)
+  "talks" (gt (len (partial "entries.html" "talks")) 0)
+  "teaching" (gt (len (partial "entries.html" "teaching")) 0)
+  "cv" (or (fileExists "static/resume.pdf") (fileExists "static/cv.pdf"))
+  "contact" (or site.Params.email site.Params.profiles)
+}}
+{{- $drafting := not hugo.IsProduction }}
+{{- $sections := slice }}
+{{- range slice
+  (dict "id" "about" "label" "About")
+  (dict "id" "projects" "label" "Projects")
+  (dict "id" "research" "label" "Research")
+  (dict "id" "publications" "label" "Publications")
+  (dict "id" "talks" "label" "Talks")
+  (dict "id" "teaching" "label" "Teaching")
+  (dict "id" "cv" "label" "CV & Résumé")
+  (dict "id" "contact" "label" "Contact")
+}}
+  {{- if or $drafting (index $has .id) }}{{ $sections = $sections | append . }}{{ end }}
+{{- end }}
+{{- return $sections }}

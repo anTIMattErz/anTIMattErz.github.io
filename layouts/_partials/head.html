@@ -6,6 +6,10 @@
 <meta name="description" content="{{ . | plainify }}">
 {{- end }}
 <link rel="canonical" href="{{ .Permalink }}">
+{{- if and hugo.IsProduction .IsPage (eq (strings.TrimSpace (plainify .Content)) "") }}
+{{- /* A page with no details yet: keep it out of search results until it has some. */}}
+<meta name="robots" content="noindex">
+{{- end }}
 <meta name="color-scheme" content="light dark">
 <script>
   // Runs before the page is drawn: marks that JavaScript works, and applies a theme the visitor

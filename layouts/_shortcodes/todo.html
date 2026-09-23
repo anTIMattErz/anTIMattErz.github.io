@@ -1,4 +1,7 @@
 {{- /* {{< todo >}}what's missing{{< /todo >}} marks missing content in a Markdown page.
-       Each one is also listed in Hugo's build output. */ -}}
+       It shows only while drafting (hugo server), never on the live site, and each one
+       is also listed in Hugo's build output. */ -}}
 {{- warnf "TODO on %s: %s" .Page.RelPermalink .Inner -}}
+{{- if not hugo.IsProduction -}}
 <span class="todo">TODO: {{ .Inner }}</span>
+{{- end -}}

@@ -1,4 +1,7 @@
-{{- /* A visible placeholder for missing content. Each one is also listed in Hugo's build output. */}}
+{{- /* A visible placeholder for missing content, shown only while drafting (hugo server),
+       never on the live site. Each one is also listed in Hugo's build output. */}}
 {{- warnf "TODO on %s: %s" .page.RelPermalink .text }}
+{{- if not hugo.IsProduction }}
 <span class="todo">TODO: {{ .text }}</span>
+{{- end }}
 {{- /* (no trailing newline, so the placeholder can sit inside a sentence) */ -}}
