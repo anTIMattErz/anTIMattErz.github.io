@@ -1,0 +1,108 @@
+{{ define "main" }}
+<header class="hero" id="top">
+  {{- partial "banner.html" . }}
+  <div class="hero-text">
+    <h1 class="hero-name">{{ site.Title }}</h1>
+    <p class="hero-tagline">
+      {{- with site.Params.tagline }}{{ $.RenderString . }}
+      {{- else }}{{ partial "todo.html" (dict "page" $ "text" "one line under your name (tagline in hugo.toml)") }}{{ end -}}
+    </p>
+    {{- partial "contact-links.html" . }}
+  </div>
+</header>
+
+<section id="about" class="section">
+  <h2 class="section-title">About</h2>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <h2 class="section-title">Projects</h2>
+  {{- with (where site.RegularPages "Section" "projects").ByWeight }}
+  <div class="cards">
+    {{- range . }}{{ partial "entry.html" . }}{{ end }}
+  </div>
+  {{- else }}
+  <p>{{ partial "todo.html" (dict "page" . "text" "projects: one folder per project in content/projects/ (template: archetypes/projects.md)") }}</p>
+  {{- end }}
+</section>
+
+<section id="research" class="section">
+  <h2 class="section-title">Research</h2>
+  {{- range (where site.RegularPages "Section" "research").ByWeight }}
+  {{- partial "entry.html" . }}
+  {{- end }}
+</section>
+
+<section id="publications" class="section">
+  <h2 class="section-title">Publications &amp; Theses</h2>
+  {{- $all := hugo.Data.publications }}
+  {{- with where $all "kind" "ne" "thesis" }}
+  <h3 class="subhead">Papers</h3>
+  <ol class="refs">{{ range . }}{{ partial "ref.html" . }}{{ end }}</ol>
+  {{- end }}
+  {{- with where $all "kind" "thesis" }}
+  <h3 class="subhead">Theses</h3>
+  <ol class="refs">{{ range . }}{{ partial "ref.html" . }}{{ end }}</ol>
+  {{- end }}
+  {{- if not $all }}
+  <p>{{ partial "todo.html" (dict "page" . "text" "publications and theses (data/publications.yaml)") }}</p>
+  {{- end }}
+</section>
+
+<section id="talks" class="section">
+  <h2 class="section-title">Talks</h2>
+  {{- with hugo.Data.talks }}
+  <ol class="refs">{{ range . }}{{ partial "ref.html" . }}{{ end }}</ol>
+  {{- else }}
+  <p>{{ partial "todo.html" (dict "page" . "text" "talks (data/talks.yaml)") }}</p>
+  {{- end }}
+</section>
+
+<section id="teaching" class="section">
+  <h2 class="section-title">Teaching</h2>
+  {{- with hugo.Data.teaching }}
+  <ul class="teaching">
+    {{- range . }}
+    {{- $meta := slice }}
+    {{- range slice .role .institution .terms }}{{ with . }}{{ $meta = $meta | append . }}{{ end }}{{ end }}
+    <li{{ if .todo }} class="is-todo"{{ end }}>
+      <span class="course">{{ .course }}</span>
+      <span class="meta">{{ delimit $meta " · " }}</span>
+    </li>
+    {{- if .todo }}{{ warnf "TODO on /: placeholder entry in data/teaching.yaml: %s" .course }}{{ end }}
+    {{- end }}
+  </ul>
+  {{- else }}
+  <p>{{ partial "todo.html" (dict "page" . "text" "courses (data/teaching.yaml)") }}</p>
+  {{- end }}
+</section>
+
+<section id="cv" class="section">
+  <h2 class="section-title">CV &amp; Résumé</h2>
+  <p class="doc-links">
+    {{- if fileExists "static/resume.pdf" }}<a class="button" href="/resume.pdf">Résumé <span>PDF</span></a>
+    {{- else }}{{ partial "todo.html" (dict "page" . "text" "résumé: save it as static/resume.pdf") }}{{ end }}
+    {{- if fileExists "static/cv.pdf" }}<a class="button" href="/cv.pdf">Academic CV <span>PDF</span></a>
+    {{- else }}{{ partial "todo.html" (dict "page" . "text" "CV: save it as static/cv.pdf") }}{{ end -}}
+  </p>
+</section>
+
+<section id="contact" class="section">
+  <h2 class="section-title">Contact</h2>
+  {{- if or site.Params.email site.Params.profiles }}
+  <ul class="contact">
+    {{- with site.Params.email }}
+    <li><span class="label">Email</span> <a href="mailto:{{ . }}">{{ . }}</a></li>
+    {{- end }}
+    {{- range site.Params.profiles }}
+    <li><span class="label">{{ .name }}</span> <a href="{{ .url }}">{{ .url | replaceRE `^https?://(www\.)?` "" }}</a></li>
+    {{- end }}
+  </ul>
+  {{- else }}
+  <p>{{ partial "todo.html" (dict "page" . "text" "contact details and profiles (hugo.toml)") }}</p>
+  {{- end }}
+</section>
+{{ end }}

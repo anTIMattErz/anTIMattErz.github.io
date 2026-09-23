@@ -1,0 +1,8 @@
+# Courses taught, newest first. Fields: course, role, institution, terms.
+# Delete the TODO entry once real ones are in.
+
+- todo: true
+  course: "TODO: course number and name"
+  role: "TODO: instructor, TA, ..."
+  institution: "TODO: university"
+  terms: "TODO: terms"

@@ -1,0 +1,4 @@
+{{- /* {{< todo >}}what's missing{{< /todo >}} marks missing content in a Markdown page.
+       Each one is also listed in Hugo's build output. */ -}}
+{{- warnf "TODO on %s: %s" .Page.RelPermalink .Inner -}}
+<span class="todo">TODO: {{ .Inner }}</span>

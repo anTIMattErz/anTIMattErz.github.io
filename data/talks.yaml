@@ -1,0 +1,10 @@
+# Talks, newest first. Fields: title, event, place, date, links (for example slides).
+# Delete the TODO entry once real ones are in.
+
+- todo: true
+  title: "TODO: talk title"
+  event: "TODO: seminar or conference"
+  place: "TODO: city or institution"
+  date: "TODO: month and year"
+  links:
+    - { name: Slides, url: "#" }

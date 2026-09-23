@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{- partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="frame">
+    {{- partial "sidebar.html" . }}
+    <main id="main" class="main">
+      {{- block "main" . }}{{ end }}
+      <footer class="site-footer">
+        <p>© {{ now.Year }} {{ site.Title }}</p>
+      </footer>
+    </main>
+  </div>
+  {{- with resources.Get "js/main.js" | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{- end }}
+  {{- /* Last, so it can see whether anything above rendered math. */}}
+  {{- partial "mathjax.html" . }}
+</body>
+</html>

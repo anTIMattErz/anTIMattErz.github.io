@@ -1,0 +1,13 @@
+{{- /* The row of links under your name: résumé, CV, email, profiles. */}}
+{{- $links := partial "docs.html" . }}
+{{- with site.Params.email }}
+  {{- $links = $links | append (dict "name" "Email" "url" (printf "mailto:%s" .)) }}
+{{- end }}
+{{- range site.Params.profiles }}
+  {{- $links = $links | append (dict "name" .name "url" .url) }}
+{{- end }}
+{{- with $links }}
+<p class="links hero-links">{{ range . }}<a href="{{ .url }}">{{ .name }}</a>{{ end }}</p>
+{{- else }}
+<p class="hero-links">{{ partial "todo.html" (dict "page" $ "text" "links under your name: résumé, CV, email, profiles") }}</p>
+{{- end }}

@@ -1,0 +1,37 @@
+baseURL = "https://mtwomack.dev/"
+locale = "en-US"
+title = "Michael Womack"
+
+# Only the academic side exists so far: no tags, categories, or RSS feed yet.
+disableKinds = ["taxonomy", "term", "rss"]
+
+[params]
+  # The line under your name at the top of the main page.
+  tagline = ""
+  # Used by search engines and link previews (LinkedIn, Slack, ...).
+  description = ""
+  # Shown under your name and in Contact. Leave empty until you decide to publish it.
+  email = ""
+
+  # Profiles linked under your name and in Contact, in this order. Copy this block once per profile:
+  # [[params.profiles]]
+  #   name = "GitHub"
+  #   url = "https://github.com/..."
+
+[markup]
+  [markup.goldmark.parser]
+    # An image on a line of its own becomes a figure; its "title" becomes the caption.
+    wrapStandAloneImageWithinParagraph = false
+  [markup.goldmark.extensions.passthrough]
+    # Keeps LaTeX intact for MathJax: $...$ or \(...\) inline, $$...$$ or \[...\] on its own line.
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [["\\[", "\\]"], ["$$", "$$"]]
+      inline = [["\\(", "\\)"], ["$", "$"]]
+  [markup.highlight]
+    # Code blocks get class names instead of fixed colors; the colors are in assets/css/main.css,
+    # so they can follow the light and dark themes.
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3

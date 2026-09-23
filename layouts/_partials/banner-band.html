@@ -1,0 +1,9 @@
+{{- /* The strip of the mountain photo from just above the summits down to the shoreline
+       (26–58% of its height). Used for the main page banner and for link previews. */}}
+{{- $band := false }}
+{{- with resources.Get "images/agnewmeadowsmountains.jpg" }}
+  {{- $bottom := int (math.Round (mul .Height 0.58)) }}
+  {{- $height := int (math.Round (mul .Height 0.32)) }}
+  {{- $band = (.Crop (printf "%dx%d Top" .Width $bottom)).Crop (printf "%dx%d Bottom" .Width $height) }}
+{{- end }}
+{{- return $band }}

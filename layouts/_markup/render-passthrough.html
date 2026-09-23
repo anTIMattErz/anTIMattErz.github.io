@@ -1,0 +1,8 @@
+{{- /* Math written as $...$, $$...$$, \(...\) or \[...\]. Hands it to MathJax in one
+       consistent form and marks the page as needing MathJax. */ -}}
+{{- .Page.Store.Set "hasMath" true -}}
+{{- if eq .Type "block" -}}
+\[{{ .Inner }}\]
+{{- else -}}
+\({{ .Inner }}\)
+{{- end -}}

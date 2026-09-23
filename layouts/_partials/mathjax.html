@@ -1,0 +1,17 @@
+{{- /* Loads MathJax only on pages that contain math (see _markup/render-passthrough.html),
+       or that set `math: true` in their front matter. */}}
+{{- if or .Params.math (.Store.Get "hasMath") }}
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      tags: 'ams',
+      // Your LaTeX macros, for example:  R: '\\mathbb{R}',  norm: ['\\left\\lVert #1 \\right\\rVert', 1]
+      macros: {}
+    },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+{{- end }}

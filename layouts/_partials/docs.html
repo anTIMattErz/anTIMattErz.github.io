@@ -1,0 +1,9 @@
+{{- /* The résumé and CV, if their PDFs exist in static/. */}}
+{{- $docs := slice }}
+{{- if fileExists "static/resume.pdf" }}
+  {{- $docs = $docs | append (dict "name" "Résumé" "url" "/resume.pdf") }}
+{{- end }}
+{{- if fileExists "static/cv.pdf" }}
+  {{- $docs = $docs | append (dict "name" "CV" "url" "/cv.pdf") }}
+{{- end }}
+{{- return $docs }}

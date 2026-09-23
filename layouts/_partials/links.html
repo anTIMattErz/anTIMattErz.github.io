@@ -1,0 +1,7 @@
+{{- /* A page's `links` front matter. A url naming a file in the page's folder links to that file. */}}
+{{- $page := . }}
+{{- range .Params.links }}
+  {{- $url := .url }}
+  {{- with $page.Resources.Get .url }}{{ $url = .RelPermalink }}{{ end }}
+  <a href="{{ $url }}">{{ .name }}</a>
+{{- end }}

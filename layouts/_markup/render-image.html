@@ -1,0 +1,26 @@
+{{- /* Markdown images. Images in the page's folder are resized and converted to WebP.
+       An image on a line of its own becomes a figure, with its "title" as the caption:
+       ![What the image shows](plot.png "Caption, math allowed: $\alpha$") */ -}}
+{{- $src := .Destination | safeURL }}
+{{- $width := 0 }}
+{{- $height := 0 }}
+{{- with .Page.Resources.Get .Destination }}
+  {{- $src = .RelPermalink }}
+  {{- if and (eq .MediaType.MainType "image") (ne .MediaType.SubType "svg") }}
+    {{- $img := . }}
+    {{- if gt .Width 1360 }}{{ $img = .Resize "1360x webp q80" }}{{ else }}{{ $img = .Process "webp q80" }}{{ end }}
+    {{- $src = $img.RelPermalink }}
+    {{- $width = $img.Width }}
+    {{- $height = $img.Height }}
+  {{- end }}
+{{- end }}
+{{- if .IsBlock }}
+<figure>
+  <img src="{{ $src }}" alt="{{ .PlainText }}"{{ with $width }} width="{{ . }}" height="{{ $height }}"{{ end }} loading="lazy" decoding="async">
+  {{- with .Title }}
+  <figcaption>{{ $.Page.RenderString . }}</figcaption>
+  {{- end }}
+</figure>
+{{- else -}}
+<img src="{{ $src }}" alt="{{ .PlainText }}"{{ with $width }} width="{{ . }}" height="{{ $height }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{- end -}}

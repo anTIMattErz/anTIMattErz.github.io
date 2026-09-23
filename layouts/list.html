@@ -1,0 +1,14 @@
+{{- /* Research and Projects live on the main page, so /research/ and /projects/ just point there. */ -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ .Title }} \\ {{ site.Title }}</title>
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url=/#{{ .Section }}">
+  <link rel="canonical" href="{{ site.Home.Permalink }}">
+</head>
+<body>
+  <p><a href="/#{{ .Section }}">{{ .Title }} is on the main page.</a></p>
+</body>
+</html>

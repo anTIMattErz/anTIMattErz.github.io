@@ -4,5 +4,11 @@ drafts/
 # macOS Finder metadata
 .DS_Store
 
-# Claude Code's per-machine settings
+# Claude Code's per-machine settings and private project notes
 .claude/settings.local.json
+CLAUDE.local.md
+
+# Hugo build output and caches
+public/
+resources/_gen/
+.hugo_build.lock

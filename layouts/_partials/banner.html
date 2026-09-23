@@ -1,0 +1,12 @@
+{{- with partial "banner-band.html" . }}
+{{- $band := . }}
+{{- $srcset := slice }}
+{{- range slice 800 1400 2000 2800 }}
+  {{- $r := $band.Resize (printf "%dx webp q72" .) }}
+  {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink $r.Width) }}
+{{- end }}
+{{- $img := $band.Resize "1400x webp q72" }}
+<div class="banner">
+  <img src="{{ $img.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="(min-width: 68rem) calc(100vw - 15rem), 100vw" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="Jagged mountain peaks above an alpine lake" fetchpriority="high">
+</div>
+{{- end }}

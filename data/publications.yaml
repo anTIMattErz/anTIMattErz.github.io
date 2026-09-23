@@ -1,0 +1,27 @@
+# Papers and theses, newest first. Fields:
+#   kind:    paper or thesis
+#   authors: "A. Author, B. Author"
+#   title:   "The title" (LaTeX math like $x^2$ works)
+#   venue:   "Journal, volume (pages)", "arXiv preprint", or "PhD thesis, University"
+#   year:    2026
+#   links:   name/url pairs; a url like /papers/name.pdf serves a file saved in static/papers/
+# Delete the TODO entries once real ones are in.
+
+- todo: true
+  kind: paper
+  authors: "TODO: authors"
+  title: "TODO: paper title"
+  venue: "TODO: journal or arXiv"
+  year: "TODO: year"
+  links:
+    - { name: arXiv, url: "#" }
+    - { name: PDF, url: "#" }
+
+- todo: true
+  kind: thesis
+  authors: "TODO: your name"
+  title: "TODO: thesis title"
+  venue: "TODO: degree and university"
+  year: "TODO: year"
+  links:
+    - { name: PDF, url: "#" }

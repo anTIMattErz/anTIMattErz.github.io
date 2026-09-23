@@ -1,0 +1,12 @@
+{{- /* One line in Publications or Talks, from data/*.yaml. */}}
+<li{{ if .todo }} class="is-todo"{{ end }}>
+  {{- with .authors }}<span class="ref-authors">{{ . }}</span>, {{ end -}}
+  <cite class="ref-title">{{ site.Home.RenderString .title }}</cite>
+  {{- with .venue }}, {{ . }}{{ end }}
+  {{- with .event }}, {{ . }}{{ end }}
+  {{- with .place }}, {{ . }}{{ end }}
+  {{- with .year }} ({{ . }}){{ end }}
+  {{- with .date }} ({{ . }}){{ end }}.
+  {{- with .links }} <span class="links">{{ range . }}<a href="{{ .url }}">{{ .name }}</a>{{ end }}</span>{{ end -}}
+</li>
+{{- if .todo }}{{ warnf "TODO on /: placeholder entry in data/: %s" .title }}{{ end }}

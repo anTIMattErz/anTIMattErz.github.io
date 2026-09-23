@@ -1,0 +1,35 @@
+{{- /* Wide screens: a fixed column on the left. Narrow screens: a bar across the top,
+       with the menu and theme buttons. */}}
+<aside class="sidebar" data-sidebar>
+  <a class="wordmark" href="/">{{ site.Title }}</a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sidebar-nav">{{ if .IsHome }}Sections{{ else }}Contents{{ end }}</button>
+  <nav id="sidebar-nav" class="sidebar-nav" aria-label="{{ if .IsHome }}Sections{{ else }}On this page{{ end }}">
+    {{- if .IsHome }}
+    <div class="rail" data-spy>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#cv">CV &amp; Résumé</a>
+      <a href="#contact">Contact</a>
+    </div>
+    {{- else }}
+    <a class="back" href="/{{ with .Section }}#{{ . }}{{ end }}">← Main page</a>
+    {{- if .IsPage }}
+    <div class="rail" data-spy>
+      <a href="#top">{{ .Title }}</a>
+      {{ .TableOfContents }}
+    </div>
+    {{- end }}
+    {{- end }}
+    {{- with partial "docs.html" . }}
+    <p class="sidebar-docs">{{ range . }}<a href="{{ .url }}">{{ .name }}</a>{{ end }}</p>
+    {{- end }}
+  </nav>
+  <button class="theme-toggle" type="button" data-theme-toggle>
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/></svg>
+    <span class="theme-label">Dark theme</span>
+  </button>
+</aside>

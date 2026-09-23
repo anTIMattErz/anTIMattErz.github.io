@@ -1,0 +1,35 @@
+{{- /* One project or research topic on the main page. Summaries render as the main page,
+       so math in them tells the main page to load MathJax. */}}
+<article class="entry">
+  <div class="entry-text">
+    <h3 class="entry-title">
+      {{- if .Content }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end -}}
+    </h3>
+    {{- with .Params.summary }}
+    <p class="entry-summary">{{ site.Home.RenderString . }}</p>
+    {{- else }}
+    <p class="entry-summary">{{ partial "todo.html" (dict "page" . "text" (printf "summary for %s (in its index.md)" .Title)) }}</p>
+    {{- end }}
+    {{- with .Params.highlights }}
+    <ul class="entry-highlights">
+      {{- range . }}<li>{{ site.Home.RenderString . }}</li>{{ end }}
+    </ul>
+    {{- end }}
+    {{- with .Params.tools }}
+    <p class="tags">{{ range . }}<span class="tag">{{ . }}</span>{{ end }}</p>
+    {{- end }}
+    <p class="links">
+      {{- if .Params.links }}{{ partial "links.html" . }}
+      {{- else if eq .Section "research" }}{{ partial "todo.html" (dict "page" . "text" "links: paper or thesis, slides, code") }}
+      {{- end }}
+      {{- if .Content }}<a class="more" href="{{ .RelPermalink }}">Details →</a>{{ end -}}
+    </p>
+  </div>
+  {{- with .Params.figure }}{{ with $.Resources.Get . }}
+  {{- $thumb := . }}
+  {{- if and (ne .MediaType.SubType "svg") (gt .Width 480) }}{{ $thumb = .Resize "480x webp q78" }}{{ end }}
+  <a class="entry-figure" href="{{ $.RelPermalink }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ $thumb.RelPermalink }}" alt="" loading="lazy" decoding="async">
+  </a>
+  {{- end }}{{ end }}
+</article>

@@ -1,0 +1,45 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}Home{{ else }}{{ .Title }}{{ end }} \\ {{ site.Title }}</title>
+{{- $description := or .Params.summary .Description site.Params.description }}
+{{- with $description }}
+<meta name="description" content="{{ . | plainify }}">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="color-scheme" content="light dark">
+<script>
+  // Runs before the page is drawn: marks that JavaScript works, and applies a theme the visitor
+  // picked earlier with the sidebar button (otherwise the device's light/dark setting decides).
+  (() => {
+    const root = document.documentElement;
+    root.classList.add('js');
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+    } catch (e) {}
+  })();
+</script>
+{{- with resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{- end }}
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_files/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/favicon_files/apple-touch-icon.png">
+<link rel="manifest" href="/favicon_files/site.webmanifest">
+<meta name="theme-color" content="#fcfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151719" media="(prefers-color-scheme: dark)">
+{{- /* Link previews (LinkedIn, Slack, iMessage, ...) */}}
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with $description }}
+<meta property="og:description" content="{{ . | plainify }}">
+{{- end }}
+{{- with partial "banner-band.html" . }}
+{{- $og := .Fill "1200x630 Center jpg q80" }}
+<meta property="og:image" content="{{ $og.Permalink }}">
+<meta property="og:image:width" content="{{ $og.Width }}">
+<meta property="og:image:height" content="{{ $og.Height }}">
+<meta name="twitter:card" content="summary_large_image">
+{{- end }}
