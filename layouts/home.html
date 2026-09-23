@@ -51,14 +51,17 @@
 
 {{- if $show.publications }}
 <section id="publications" class="section">
-  <h2 class="section-title">Publications &amp; Theses</h2>
   {{- $all := partial "entries.html" "publications" }}
-  {{- with where $all "kind" "ne" "thesis" }}
-  <h3 class="subhead">Papers</h3>
+  {{- $papers := where $all "kind" "ne" "thesis" }}
+  {{- $theses := where $all "kind" "thesis" }}
+  {{- $both := and $papers $theses }}
+  <h2 class="section-title">{{ if $papers }}Publications{{ if $theses }} &amp; Theses{{ end }}{{ else }}Theses{{ end }}</h2>
+  {{- with $papers }}
+  {{- if $both }}<h3 class="subhead">Papers</h3>{{ end }}
   <ol class="refs">{{ range . }}{{ partial "ref.html" . }}{{ end }}</ol>
   {{- end }}
-  {{- with where $all "kind" "thesis" }}
-  <h3 class="subhead">Theses</h3>
+  {{- with $theses }}
+  {{- if $both }}<h3 class="subhead">Theses</h3>{{ end }}
   <ol class="refs">{{ range . }}{{ partial "ref.html" . }}{{ end }}</ol>
   {{- end }}
   {{- if not $all }}
@@ -80,21 +83,58 @@
 
 {{- if $show.teaching }}
 <section id="teaching" class="section">
-  <h2 class="section-title">Teaching</h2>
-  {{- with partial "entries.html" "teaching" }}
-  <ul class="teaching">
+  {{- $courses := partial "entries.html" "teaching" }}
+  {{- $fellowships := partial "entries.html" "fellowships" }}
+  <h2 class="section-title">Teaching{{ if $fellowships }} &amp; Fellowships{{ end }}</h2>
+  {{- /* One line per term; a heading over each run of terms with the same role and institution */}}
+  {{- $group := "" }}
+  {{- range $i, $course := $courses }}
+    {{- $this := printf "%s · %s" .role .institution }}
+    {{- if ne $this $group }}
+      {{- if $i }}
+  </ol>
+      {{- end }}
+  <h3 class="subhead">{{ $this }}</h3>
+  <ol class="terms">
+      {{- $group = $this }}
+    {{- end }}
+    <li{{ if .todo }} class="is-todo"{{ end }}><span class="term">{{ .term }}</span><span class="term-title">{{ .title }}</span></li>
+    {{- if .todo }}{{ warnf "TODO on /: placeholder entry in data/teaching.yaml: %s" .title }}{{ end }}
+  {{- end }}
+  {{- if $courses }}
+  </ol>
+  {{- end }}
+  {{- with $fellowships }}
+  <h3 class="subhead">Fellowships</h3>
+  <ol class="terms">
     {{- range . }}
-    {{- $meta := slice }}
-    {{- range slice .role .institution .terms }}{{ with . }}{{ $meta = $meta | append . }}{{ end }}{{ end }}
+    <li{{ if .todo }} class="is-todo"{{ end }}><span class="term">{{ .term }}</span><span class="term-title">{{ .title }}{{ with .institution }}<span class="meta"> · {{ . }}</span>{{ end }}</span></li>
+    {{- end }}
+  </ol>
+  {{- end }}
+  {{- if not (or $courses $fellowships) }}
+  <p>{{ partial "todo.html" (dict "page" . "text" "teaching (data/teaching.yaml) and fellowships (data/fellowships.yaml)") }}</p>
+  {{- end }}
+</section>
+{{- end }}
+
+{{- if $show.education }}
+<section id="education" class="section">
+  <h2 class="section-title">Education</h2>
+  {{- with partial "entries.html" "education" }}
+  <ul class="education">
+    {{- range . }}
     <li{{ if .todo }} class="is-todo"{{ end }}>
-      <span class="course">{{ .course }}</span>
-      <span class="meta">{{ delimit $meta " · " }}</span>
+      <div class="education-line">
+        <span class="degree">{{ .degree }}</span>
+        <span class="meta">{{ .years }}</span>
+      </div>
+      <div class="education-school">{{ .school }}{{ with .note }} · {{ . }}{{ end }}</div>
     </li>
-    {{- if .todo }}{{ warnf "TODO on /: placeholder entry in data/teaching.yaml: %s" .course }}{{ end }}
     {{- end }}
   </ul>
   {{- else }}
-  <p>{{ partial "todo.html" (dict "page" . "text" "courses (data/teaching.yaml)") }}</p>
+  <p>{{ partial "todo.html" (dict "page" . "text" "degrees (data/education.yaml)") }}</p>
   {{- end }}
 </section>
 {{- end }}

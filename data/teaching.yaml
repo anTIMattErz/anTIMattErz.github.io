@@ -1,8 +1,27 @@
-# Courses taught, newest first. Fields: course, role, institution, terms.
-# Delete the TODO entry once real ones are in.
+# Teaching, one entry per term, newest first. Fields:
+#   term:        "Fall 2019"
+#   title:       the course, e.g. "Calculus II (MATH 2B)"
+#   role:        "Teaching assistant", "Instructor of record", ...
+#   institution: "UC Irvine"
+# The page puts a heading over each run of entries with the same role and institution.
+# Fellowships and other funding go in fellowships.yaml.
 
-- todo: true
-  course: "TODO: course number and name"
-  role: "TODO: instructor, TA, ..."
-  institution: "TODO: university"
-  terms: "TODO: terms"
+- { term: "Winter 2026", title: "Elementary Differential Equations (MATH 3D)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Summer 2025", title: "Calculus II (MATH 2B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Spring 2025", title: "Elementary Differential Equations (MATH 3D)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Summer 2024", title: "Calculus for Biology II (MATH 5B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Spring 2024", title: "Elementary Differential Equations (MATH 3D)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Winter 2024", title: "Real Analysis II (MATH 140B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Fall 2023",   title: "Calculus II (MATH 2B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Summer 2023", title: "Calculus for Biology I (MATH 5A)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Spring 2023", title: "Elementary Differential Equations (MATH 3D)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Winter 2023", title: "Elementary Differential Equations (MATH 3D)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Fall 2022",   title: "Calculus for Biology II (MATH 5B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Summer 2022", title: "Calculus II (MATH 2B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Spring 2022", title: "Calculus II (MATH 2B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Winter 2022", title: "Calculus II (MATH 2B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Fall 2021",   title: "Calculus II (MATH 2B)", role: "Teaching assistant", institution: "UC Irvine" }
+- { term: "Spring 2021", title: "Pre-Calculus (MATH 199) and Business Calculus (MATH 108)", role: "Instructor of record", institution: "San Francisco State University" }
+- { term: "Fall 2020",   title: "Pre-Calculus (MATH 199) and Business Calculus (MATH 108)", role: "Instructor of record", institution: "San Francisco State University" }
+- { term: "Spring 2020", title: "Business Calculus (MATH 108)", role: "Instructor of record", institution: "San Francisco State University" }
+- { term: "Fall 2019",   title: "Business Pre-Calculus (MATH 107)", role: "Instructor of record", institution: "San Francisco State University" }

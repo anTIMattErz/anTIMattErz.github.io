@@ -1,0 +1,8 @@
+# Fellowships and other funding, one entry per term, newest first.
+# Fields: term, title, institution. Shown as the Fellowships part of Teaching & Fellowships.
+
+- { term: "Spring 2026", title: "NSF RTG Fellow", institution: "UC Irvine" }
+- { term: "Fall 2025",   title: "NSF RTG Fellow", institution: "UC Irvine" }
+- { term: "Spring 2025", title: "NSF RTG Fellow", institution: "UC Irvine" }
+- { term: "Winter 2025", title: "NSF RTG Fellow", institution: "UC Irvine" }
+- { term: "Fall 2024",   title: "NSF RTG Fellow", institution: "UC Irvine" }

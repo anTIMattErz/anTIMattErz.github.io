@@ -1,24 +1,30 @@
 {{- /* The main page's sections, in order. While drafting (hugo server) all of them appear,
        TODOs included; the live site leaves out any section that has no real content yet. */}}
+{{- $publications := partial "entries.html" "publications" }}
 {{- $has := dict
   "about" (ne (strings.TrimSpace (plainify site.Home.Content)) "")
   "projects" (gt (len (where site.RegularPages "Section" "projects")) 0)
   "research" (gt (len (where site.RegularPages "Section" "research")) 0)
-  "publications" (gt (len (partial "entries.html" "publications")) 0)
+  "publications" (gt (len $publications) 0)
   "talks" (gt (len (partial "entries.html" "talks")) 0)
-  "teaching" (gt (len (partial "entries.html" "teaching")) 0)
+  "teaching" (or (gt (len (partial "entries.html" "teaching")) 0) (gt (len (partial "entries.html" "fellowships")) 0))
+  "education" (gt (len (partial "entries.html" "education")) 0)
   "cv" (or (fileExists "static/resume.pdf") (fileExists "static/cv.pdf"))
   "contact" (or site.Params.email site.Params.profiles)
 }}
+{{- /* With theses but no papers yet, that section is called Theses. */}}
+{{- $publicationsLabel := cond (gt (len (where $publications "kind" "ne" "thesis")) 0) "Publications" "Theses" }}
+{{- $teachingLabel := cond (gt (len (partial "entries.html" "fellowships")) 0) "Teaching & Fellowships" "Teaching" }}
 {{- $drafting := not hugo.IsProduction }}
 {{- $sections := slice }}
 {{- range slice
   (dict "id" "about" "label" "About")
   (dict "id" "projects" "label" "Projects")
   (dict "id" "research" "label" "Research")
-  (dict "id" "publications" "label" "Publications")
+  (dict "id" "publications" "label" $publicationsLabel)
   (dict "id" "talks" "label" "Talks")
-  (dict "id" "teaching" "label" "Teaching")
+  (dict "id" "teaching" "label" $teachingLabel)
+  (dict "id" "education" "label" "Education")
   (dict "id" "cv" "label" "CV & Résumé")
   (dict "id" "contact" "label" "Contact")
 }}

@@ -9,6 +9,9 @@
     <h3 class="entry-title">
       {{- if $hasPage }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end -}}
     </h3>
+    {{- with .Params.meta }}
+    <p class="entry-meta">{{ . }}</p>
+    {{- end }}
     {{- with .Params.summary }}
     <p class="entry-summary">{{ site.Home.RenderString . }}</p>
     {{- else }}{{ if $drafting }}

@@ -1,6 +1,8 @@
 ---
 title: Wavelet Transforms
 weight: 3
+# A line of context under the title.
+meta: "Undergraduate thesis · University of Oregon · 2015–2017 · Supervisor: Greg Bothun"
 # One or two sentences for the main page. LaTeX works: $...$ inline.
 summary: ""
 # Optional: an image in this folder to show beside the summary on the main page.

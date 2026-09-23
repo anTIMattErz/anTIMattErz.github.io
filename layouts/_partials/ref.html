@@ -2,6 +2,7 @@
 <li{{ if .todo }} class="is-todo"{{ end }}>
   {{- with .authors }}<span class="ref-authors">{{ . }}</span>, {{ end -}}
   <cite class="ref-title">{{ site.Home.RenderString .title }}</cite>
+  {{- with .coauthors }}, with {{ . }}{{ end }}
   {{- with .venue }}, {{ . }}{{ end }}
   {{- with .event }}, {{ . }}{{ end }}
   {{- with .place }}, {{ . }}{{ end }}

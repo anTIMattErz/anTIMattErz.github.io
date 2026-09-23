@@ -17,7 +17,7 @@ The source for [mtwomack.dev](https://mtwomack.dev), built with [Hugo](https://g
 | About | `content/_index.md` |
 | Projects | `content/projects/NAME/index.md`, one folder per project |
 | Research topics | `content/research/NAME/index.md`, with that topic's figures and PDFs in the same folder |
-| Publications and theses, talks, teaching | `data/publications.yaml`, `data/talks.yaml`, `data/teaching.yaml` |
+| Publications and theses, talks, teaching, fellowships, education | `data/publications.yaml`, `data/talks.yaml`, `data/teaching.yaml`, `data/fellowships.yaml`, `data/education.yaml` (every list newest first) |
 | Résumé and CV | Save them as `static/resume.pdf` and `static/cv.pdf` |
 | Banner photo | `assets/images/agnewmeadowsmountains.jpg` |
 | Colors, fonts, spacing | `assets/css/main.css` |

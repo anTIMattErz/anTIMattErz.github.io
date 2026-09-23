@@ -4,6 +4,8 @@
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 # Order on the main page, lowest first.
 weight: 10
+# A line of context under the title, e.g. "M.A. thesis · University · 2020–2022 · Supervisor: Name".
+meta: ""
 # One or two sentences for the main page. LaTeX works: $...$ inline.
 summary: ""
 # Optional: an image in this folder to show beside the summary on the main page.

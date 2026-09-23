@@ -1,6 +1,8 @@
 ---
 title: Solitons
 weight: 1
+# A line of context under the title.
+meta: "PhD thesis (in progress) · UC Irvine · 2023–present · Supervisor: Jeffrey Streets"
 # One or two sentences for the main page. LaTeX works: $...$ inline.
 summary: ""
 # Optional: an image in this folder to show beside the summary on the main page.

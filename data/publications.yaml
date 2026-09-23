@@ -1,27 +1,18 @@
 # Papers and theses, newest first. Fields:
 #   kind:    paper or thesis
-#   authors: "A. Author, B. Author"
+#   authors: "A. Author, B. Author" (leave out for your own theses)
 #   title:   "The title" (LaTeX math like $x^2$ works)
-#   venue:   "Journal, volume (pages)", "arXiv preprint", or "PhD thesis, University"
+#   venue:   "Journal, volume (pages)", "arXiv preprint", or "M.A. thesis, University"
 #   year:    2026
 #   links:   name/url pairs; a url like /papers/name.pdf serves a file saved in static/papers/
-# Delete the TODO entries once real ones are in.
+# With no papers, the section is titled "Theses".
 
-- todo: true
-  kind: paper
-  authors: "TODO: authors"
-  title: "TODO: paper title"
-  venue: "TODO: journal or arXiv"
-  year: "TODO: year"
-  links:
-    - { name: arXiv, url: "#" }
-    - { name: PDF, url: "#" }
+- kind: thesis
+  title: "Discrete Ricci Flow for Community Detection on Human Contact Networks"
+  venue: "M.A. thesis, San Francisco State University"
+  year: 2022
 
-- todo: true
-  kind: thesis
-  authors: "TODO: your name"
-  title: "TODO: thesis title"
-  venue: "TODO: degree and university"
-  year: "TODO: year"
-  links:
-    - { name: PDF, url: "#" }
+- kind: thesis
+  title: "Wavelet Analysis of Northeastern US Climate Data"
+  venue: "Undergraduate thesis, University of Oregon"
+  year: 2017

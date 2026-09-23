@@ -1,6 +1,8 @@
 ---
 title: Discrete Ricci Flow
 weight: 2
+# A line of context under the title.
+meta: "M.A. thesis · San Francisco State University · 2020–2022 · Supervisor: David Bao"
 # One or two sentences for the main page. LaTeX works: $...$ inline.
 summary: ""
 # Optional: an image in this folder to show beside the summary on the main page.

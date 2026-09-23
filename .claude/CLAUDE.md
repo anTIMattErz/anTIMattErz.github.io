@@ -7,6 +7,7 @@ The user works on this repo from a Windows PC and a MacBook. This file is commit
 ## Rules
 - Pushing `main` deploys the live site within a couple of minutes. Commit when asked; push only when the user explicitly asks.
 - Never invent content. Publications, courses, dates, and bio facts come only from material the user provides. Mark anything missing with a visible TODO: `{{< todo >}}...{{< /todo >}}` in Markdown, the `todo.html` partial in templates, `todo: true` in data files. Hugo lists every TODO as a WARN line when it builds.
+- The user drafts all prose: About, summaries, descriptions, project write-ups (the user's call, 2026-09-22). Claude fills in only lists, titles, and labels (dates, degrees, course names) from the user's material, and leaves a TODO wherever prose belongs.
 - TODOs show only while drafting (`hugo server`). The live build hides them, leaves out main-page sections with no real content yet (layouts/_partials/sections.html), and doesn't link to topic pages with no details yet.
 - The whole repo is public, even files the site doesn't serve. Private drafts and source material go in `drafts/` (gitignored), never in a commit. Git doesn't sync `drafts/`, so drafts on one machine aren't on the other.
 - Check visual changes in the local preview at desktop and phone widths before calling them done.
@@ -14,6 +15,7 @@ The user works on this repo from a Windows PC and a MacBook. This file is commit
 ## Local preview (Windows)
 - Hugo 0.166.0 extended, installed with winget (`Hugo.Hugo.Extended`). Keep `HUGO_VERSION` in the workflow equal to the local version. A shell started before the install won't have Hugo on PATH; the binary is at `%LOCALAPPDATA%\Microsoft\WinGet\Packages\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe\hugo.exe`. Run it from the repo root, in the background:
   `hugo server -D --bind 127.0.0.1 --port 1313` → http://localhost:1313 (`-D` includes drafts, such as the style check at /research/style-check/)
+- `hugo server` stops picking up edits after a branch switch (or anything else that deletes and recreates `layouts/` or `hugo.toml`) and keeps serving a stale snapshot. Restart it then, and confirm an edit shows up before trusting the preview.
 - To see exactly what goes live (no TODOs, no drafts), build with `hugo --minify --destination <scratchpad>/hugo-prod` and serve that folder with `py -m http.server 8001 --bind 127.0.0.1 --directory <scratchpad>/hugo-prod`.
 - Python is `py` (`python` is the Microsoft Store stub).
 - Screenshot with headless Chrome, then read the PNG. Use forward-slash Windows paths (Git Bash mangles backslashes). The separate `--user-data-dir` keeps Chrome from handing off to the user's open browser.
@@ -38,7 +40,8 @@ Not set up yet. Install Hugo with `brew install hugo` and run the same `hugo ser
 The redesign went live on 2026-09-22 with only the research topic titles filled in. The user fills in content gradually, and each section appears on the live site once it has some. The user isn't confident in HTML/CSS, so Claude builds the structure and styling. The personal side comes later.
 - Private context (who the site is for, what the Projects section holds) is in `CLAUDE.local.md` at the repo root. It's gitignored, so it exists only on the machine where it was written; if it's missing, ask the user. Keep that context out of every committed file until the live site says it.
 - Built with Hugo (chosen over Jekyll for build-time image resizing and one folder per page). Math is written in LaTeX and rendered with MathJax 3, which loads only on pages that contain math.
-- Academic side: one main page to scroll through, not separate Research/Teaching pages. Order: About, Projects, Research, Publications & theses, Talks, Teaching, CV & résumé, Contact.
+- Academic side: one main page to scroll through, not separate Research/Teaching pages. Order: About, Projects, Research, Publications & theses (titled "Theses" while there are no papers), Talks, Teaching & fellowships, Education, CV & résumé, Contact. Every list is newest first.
+- Content source so far: the user's CV (drafts/CV.pdf, last updated 2026-03-31, "slightly out of date"; drafts/ isn't synced, so it's only on the Windows PC). It supplied the research context lines, theses, talks, teaching, and education. It lists no papers or preprints. Teaching (the user's calls, 2026-09-22): one line per term, newest first, under a heading for each run of the same role and institution; fellowship terms (NSF RTG) are a separate Fellowships subsection from data/fellowships.yaml, and the section is titled "Teaching & Fellowships".
 - Projects: separate from Research, right under About (see `CLAUDE.local.md`).
 - Research: each project gets a summary on the main page plus its own subpage with details and links. Every project has papers/theses; some also have talks/slides, code, and figures. Expect lots of math.
 - Publish both a CV and a résumé.

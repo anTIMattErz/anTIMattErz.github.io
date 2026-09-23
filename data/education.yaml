@@ -1,0 +1,15 @@
+# Degrees, newest first. Fields: degree, school, years, note (optional: honors and the like).
+
+- degree: "Ph.D. in Pure Mathematics (in progress)"
+  school: "University of California, Irvine"
+  years: "2021–2027"
+
+- degree: "M.A. in Mathematics"
+  school: "San Francisco State University"
+  years: "2019–2022"
+  note: "2022 SFSU Mathematics Distinguished Graduate"
+
+- degree: "Double B.S. in Physics (Honors) and Mathematics"
+  school: "Clark Honors College, University of Oregon"
+  years: "2013–2017"
+  note: "Summa cum laude"

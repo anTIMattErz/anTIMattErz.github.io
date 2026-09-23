@@ -5,6 +5,9 @@
     <p class="kicker"><a href="/#{{ $.Section }}">{{ .Title }}</a></p>
     {{- end }}
     <h1 class="article-title">{{ .Title }}</h1>
+    {{- with .Params.meta }}
+    <p class="article-meta">{{ . }}</p>
+    {{- end }}
     {{- with .Params.summary }}
     <p class="article-summary">{{ $.RenderString . }}</p>
     {{- else }}{{ if not hugo.IsProduction }}

@@ -1,10 +1,11 @@
-# Talks, newest first. Fields: title, event, place, date, links (for example slides).
-# Delete the TODO entry once real ones are in.
+# Talks, newest first. Fields: title, coauthors (optional), event, place, date, links (for example slides).
 
-- todo: true
-  title: "TODO: talk title"
-  event: "TODO: seminar or conference"
-  place: "TODO: city or institution"
-  date: "TODO: month and year"
-  links:
-    - { name: Slides, url: "#" }
+- title: "PDE Theory for the Calabi Conjecture"
+  event: "UCI Geometric Analysis Learning Seminar"
+  date: "November 2023"
+
+- title: "Non-Kerrness of Binary Black Hole Collisions"
+  coauthors: "G. Montes de Oca and J. Isenberg"
+  event: "UO Undergraduate Research Symposium"
+  place: "Eugene, OR"
+  date: "May 2017"
