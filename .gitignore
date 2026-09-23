@@ -1,0 +1,8 @@
+# Private drafts and source material (the repo is public)
+drafts/
+
+# macOS Finder metadata
+.DS_Store
+
+# Claude Code's per-machine settings
+.claude/settings.local.json
