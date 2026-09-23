@@ -42,4 +42,3 @@ Not set up yet. Adapt the Windows commands: probably `python3` instead of `py`, 
 - main.css: `.navbar ul li.active a` also underlines the Research sub-links; use `li.active > a`.
 - favicon_files/site.webmanifest and browserconfig.xml point at root icon paths (404); the icons live in /favicon_files/. The manifest `name` is empty.
 - navbar_active.js pulls in jQuery (87 KB) and misses extensionless URLs like `/research`, which Pages also serves.
-- GitHub has a stray `master` branch (an orphan commit, never deployed). It can be deleted if the user agrees.
